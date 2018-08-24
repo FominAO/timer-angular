@@ -4,13 +4,15 @@
   <div class="timer__label"></div>
   <div class="timer__clocks" *ngFor="let clock of clocks; let i = index">
     <div class="svg-circle">
-          <svg xmlns="http://www.w3.org/2000/svg" 
+          <svg xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 500 500">
               <style type="text/css">
                 .st1{fill: #000000; font-family: "Arial"; font-size: 250px;}
+                
               </style>
-            <circle id="circle" cx="250" cy="250" r="240" 
-                    fill="none" [(attr.stroke)]="circleColor" [(attr.stroke-width)]="circleStrokeWidth"/>
+            <circle ticking [tick]="'300, 1800'" class="circle" id="circle" cx="250" cy="250" r="240"
+              [(attr.style)]="strokedRed"
+                    fill="none" [(attr.stroke)]=" '#' + circleColor" [(attr.stroke-width)]="circleStrokeWidth"/>
                     <text [attr.transform]="textMatr[i]" class="st1">{{clock}}</text>
           </svg>
     </div>
@@ -20,12 +22,31 @@
 </div>
 <div class="contol-panel">
   <div class="color-change">
-    <label for="color">Color (NNN, NNNNNN)</label>
-    <input class="color-change__input" name="color" type="text" (keyup)="changeColor($event.target.value)">
+    <label for="color">Color (#NNN)</label>
+    <mat-slider min="1" max="1665" step="1" [(value)]="circleColor"></mat-slider>
+    #{{circleColor}}
+    <!-- <input class="color-change__input" name="color" type="text" (keyup)="changeColor($event.target.value)"> -->
   </div>
   <div class="width-change">
       <label for="width">Stroke width</label>
-      <input class="width-change__input" name="width" type="text" (keyup)="changeSW($event.target.value)">
+      <mat-slider min="0" max="21" step="1" [(value)]="circleStrokeWidth"></mat-slider>
+    {{circleStrokeWidth}}
+    </div>
+  <div class="date-change">
+    <span class="label-container"><label for="date">Goal date</label></span> 
+    <mat-slider min="1535100" max="1543565" step="1" [(value)]="newDate"></mat-slider>
+    
+    {{newDate*1000000 | date}}
+  </div>
+  <div class="stroke-change">
+    <span class="label-container"><label for="stroked">Stroke</label></span> 
+    <mat-slider min="0" max="1512" step="1" [(value)]="stroked"></mat-slider>
+    
+    {{strokedRed}}
+  </div>
+    <div class="launch">
+      <button class="launch__button" (click)="start(newDate)">Start</button>
+      <button class="launch__button" (click)="stop()">Stop</button>
     </div>
 </div>
 		</div>

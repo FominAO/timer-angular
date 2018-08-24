@@ -7,6 +7,7 @@
     font-family: Arial, Helvetica, sans-serif;
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-between
 }
 .timer__label {
     width: 100%;
@@ -14,7 +15,7 @@
 }
 .timer__clocks {
     height: 90%;
-    width: 25%;
+    width: 24%;
 }
 .number {
     font-size: 80pt;
@@ -22,10 +23,37 @@
     top: -183px;
     left: 83px;
 }
+mat-slider {
+    width: 300px
+}
+.label-container {
+    width: 150px;
+}
+.launch__button {
+    box-shadow: none;
+    border: none;
+    background-color: #FA5078;
+    width: 80px;
+    height: 30px;
+    margin-right: 15px;
+    border-radius: 2px;
+}
+.launch__button:hover {
+    background-color: rgb(255, 126, 156);
+}
+.launch__button:active {
+    background-color: rgb(248, 55, 100);
+
+}
 .color-change__input, .width-change__input {
 width: 100%;
 padding: 4px 0; 
 border-radius: 3px;
 box-shadow: none;
 border: 1px solid rgb(137, 165, 255)
+}
+#circle{
+  transform: translateY(500px) rotate(-90deg) scaleY(-1) translateY(-500px);
+  /* stroke-dasharray: 1512, 1800; */
+  transition: 500ms;
 }
