@@ -1,7 +1,7 @@
 <body>
 		<div class="container">
 <div class="timer">
-  <div class="timer__label"></div>
+  <div class="timer__label">{{labelInput.value}}</div>
   <div class="timer__clocks" *ngFor="let clock of clocks; let i = index">
     <div class="svg-circle-container">
           <svg class="svg-circle" appTickDirective [clockCount]="clock" [clockType]="i"  xmlns="http://www.w3.org/2000/svg"
@@ -11,46 +11,50 @@
                 
               </style>
             <circle  class="circle" id="circle" cx="250" cy="250" r="240"
-              [(attr.style)]="strokedRed"
                     fill="none" [(attr.stroke)]=" '#' + circleColor" [(attr.stroke-width)]="circleStrokeWidth"/>
-                    <text [attr.transform]="textMatr[i]" class="st1">{{clock}}</text>
+                    <text class="counter" [attr.transform]="textMatr[i]" class="st1">{{clock}}</text>
           </svg>
     </div>
 
   </div>
 
 </div>
-<div class="contol-panel">
-  <div class="control color-change">
-    <label for="color">Color (#NNN)</label>
-    <div class="picker">
-    <mat-slider min="1" max="1665" step="1" [(value)]="circleColor"></mat-slider>
-    </div>
-    <div class="current-value">#{{circleColor}}</div> 
-    <!-- <input class="color-change__input" name="color" type="text" (keyup)="changeColor($event.target.value)"> -->
-  </div>
-  <div class="control width-change">
-      <label for="width">Stroke width</label>
-      <div class="picker">
-      <mat-slider min="0" max="21" step="1" [(value)]="circleStrokeWidth"></mat-slider>
-      </div>
-      <div class="current-value">{{circleStrokeWidth}}</div>
-    </div>
-  <div class="control date-change">
-    <span class="label-container"><label  for="date">Goal date</label></span> 
-    <div class="picker">
-    <mat-form-field class="example-full-width" color="accent">
-      <input matInput [min]="newDate" [max]="maxDate" [matDatepicker]="picker" placeholder="Choose a date" (dateChange)="dateChange($event)">
-      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-      <mat-datepicker #picker></mat-datepicker>
-    </mat-form-field>
-    </div>
-    <div class="current-value">{{customDate | date:middle}}</div>
-  </div>
-  
+<div class="control-panel">
+  <ul class="control-list">
+    <li class="control">
+        <div class="control-label"><label for="color">Color (#RGB)</label></div> 
+        <mat-slider class="picker" min="1" max="1665" step="1" [(value)]="circleColor"></mat-slider>
+        <div class="current-value">#{{circleColor}}</div> 
+    </li>
+    <li class="control">
+      <div class="control-label"><label for="width">Stroke width</label></div>
+      <mat-slider  class="picker" min="0" max="21" step="1" [(value)]="circleStrokeWidth" (onTouched)="touchSlider($event)"></mat-slider>
+      <div class="current-value">{{circleStrokeWidth}}</div> 
+    </li>
+    <li class="control">
+      <div class="control-label"><label  for="date">Goal date</label></div> 
+      <mat-form-field class="picker matform" color="accent">
+        <input matInput [min]="newDate" [max]="maxDate" [matDatepicker]="picker" placeholder="Choose a date" (dateChange)="dateChange($event)">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+      <div class="current-value">{{customDate | date:middle}}</div> 
+    </li>
+    <li class="control">
+      <div class="control-label"><label for="timerLabel">Timer Label</label></div> 
+      <input class="picker timer-label" #labelInput type="text" value="Label" (keyup)='setLabel($event.value)'>
+      <div class="current-value">#{{circleColor}}</div> 
+    </li>
+  </ul>
     <div class="launch">
       <button class="launch__button" (click)="start(newDate)">Start</button>
       <button class="launch__button" (click)="stop()">Stop</button>
+      <button class="launch__button" (click)="buildCode()">Get Code</button>
+
+
+    </div>
+    <div class="output-code" *ngIf="getCode == true">
+      <input type="text" class="width-change__input" [(value)]="customCode">
     </div>
 </div>
     </div>
