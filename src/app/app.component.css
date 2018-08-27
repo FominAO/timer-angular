@@ -45,6 +45,23 @@ mat-slider {
     background-color: rgb(248, 55, 100);
 
 }
+.current-value {
+    flex-grow: 1;
+    text-align: right;
+}
+.control {
+    max-width: 650px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.control label {
+    flex-grow: 1;
+}
+.picker {
+    flex-grow: 2;
+}
+
 .color-change__input, .width-change__input {
 width: 100%;
 padding: 4px 0; 
@@ -56,4 +73,7 @@ border: 1px solid rgb(137, 165, 255)
   transform: translateY(500px) rotate(-90deg) scaleY(-1) translateY(-500px);
   /* stroke-dasharray: 1512, 1800; */
   transition: 500ms;
+}
+.svg-circle {
+      transition: 500ms;
 }

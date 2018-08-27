@@ -3,14 +3,14 @@
 <div class="timer">
   <div class="timer__label"></div>
   <div class="timer__clocks" *ngFor="let clock of clocks; let i = index">
-    <div class="svg-circle">
-          <svg xmlns="http://www.w3.org/2000/svg"
+    <div class="svg-circle-container">
+          <svg class="svg-circle" appTickDirective [clockCount]="clock" [clockType]="i"  xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 500 500">
               <style type="text/css">
                 .st1{fill: #000000; font-family: "Arial"; font-size: 250px;}
                 
               </style>
-            <circle ticking [tick]="'300, 1800'" class="circle" id="circle" cx="250" cy="250" r="240"
+            <circle  class="circle" id="circle" cx="250" cy="250" r="240"
               [(attr.style)]="strokedRed"
                     fill="none" [(attr.stroke)]=" '#' + circleColor" [(attr.stroke-width)]="circleStrokeWidth"/>
                     <text [attr.transform]="textMatr[i]" class="st1">{{clock}}</text>
@@ -21,33 +21,37 @@
 
 </div>
 <div class="contol-panel">
-  <div class="color-change">
+  <div class="control color-change">
     <label for="color">Color (#NNN)</label>
+    <div class="picker">
     <mat-slider min="1" max="1665" step="1" [(value)]="circleColor"></mat-slider>
-    #{{circleColor}}
+    </div>
+    <div class="current-value">#{{circleColor}}</div> 
     <!-- <input class="color-change__input" name="color" type="text" (keyup)="changeColor($event.target.value)"> -->
   </div>
-  <div class="width-change">
+  <div class="control width-change">
       <label for="width">Stroke width</label>
+      <div class="picker">
       <mat-slider min="0" max="21" step="1" [(value)]="circleStrokeWidth"></mat-slider>
-    {{circleStrokeWidth}}
+      </div>
+      <div class="current-value">{{circleStrokeWidth}}</div>
     </div>
-  <div class="date-change">
-    <span class="label-container"><label for="date">Goal date</label></span> 
-    <mat-slider min="1535100" max="1543565" step="1" [(value)]="newDate"></mat-slider>
-    
-    {{newDate*1000000 | date}}
+  <div class="control date-change">
+    <span class="label-container"><label  for="date">Goal date</label></span> 
+    <div class="picker">
+    <mat-form-field class="example-full-width" color="accent">
+      <input matInput [min]="newDate" [max]="maxDate" [matDatepicker]="picker" placeholder="Choose a date" (dateChange)="dateChange($event)">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    </div>
+    <div class="current-value">{{customDate | date:middle}}</div>
   </div>
-  <div class="stroke-change">
-    <span class="label-container"><label for="stroked">Stroke</label></span> 
-    <mat-slider min="0" max="1512" step="1" [(value)]="stroked"></mat-slider>
-    
-    {{strokedRed}}
-  </div>
+  
     <div class="launch">
       <button class="launch__button" (click)="start(newDate)">Start</button>
       <button class="launch__button" (click)="stop()">Stop</button>
     </div>
 </div>
-		</div>
+    </div>
 </body>

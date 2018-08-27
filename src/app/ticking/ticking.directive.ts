@@ -2,16 +2,17 @@ import { Directive, ElementRef, Renderer2, OnInit, Input, HostBinding, HostListe
 import { tick } from "@angular/core/testing";
 
 @Directive({
-    selector: '[tiking]'
+    selector: '[tiсking]'
 })
 export class Ticking implements OnInit{
 
-    @Input() tick:string = "1512, 1800";
-    @HostBinding('style.strokeDasharray') strokeDasharray: string;
+    // @Input() tick:string = "1512, 1800";
+    // @HostBinding('style.strokeDasharray') strokeDasharray: string;
 
-    constructor(private elRef: ElementRef, private renderer: Renderer2) {}
+    constructor(private elRef: ElementRef) {}
 
     ngOnInit () {
-        
+        console.log('directive on')
+         this.elRef.nativeElement.style.color = "red";
     }
 }
