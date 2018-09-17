@@ -5,12 +5,14 @@ import { MatSliderModule, MatInputModule, MatDatepickerModule, MatNativeDateModu
 import { AppComponent } from './app.component';
 import { Ticking } from './ticking/ticking.directive';
 import { TickDirectiveDirective } from './tick-directive.directive';
+import { PalletComponent } from './pallet/pallet.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     Ticking,
-    TickDirectiveDirective
+    TickDirectiveDirective,
+    PalletComponent
   ],
   imports: [
     BrowserModule,

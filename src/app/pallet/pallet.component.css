@@ -1,0 +1,15 @@
+.color-list {
+    height: 138px;
+    width: 138px;
+}
+.color-list__row {
+
+}
+.color-cell {
+    height: 15px;
+    width: 15px;
+    margin: 1px;
+}
+.color-cell:first-child{
+    border: 1px solid grey;
+}

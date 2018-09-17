@@ -1,0 +1,7 @@
+<div class="custom-pallet">
+  <ul class="color-list">
+    <li *ngFor="let row of colorRows" class="color-list__row">
+      <span *ngFor="let color of row" class="color-cell" [style.backgroundColor]="color" (click)="pickColor(color)"></span>
+    </li>
+  </ul>
+</div>

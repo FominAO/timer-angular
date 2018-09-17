@@ -10,7 +10,7 @@
                 .st1{fill: #000000; font-family: "Arial"; font-size: 250px;}
                 
               </style>
-            <circle  class="circle" id="circle" cx="250" cy="250" r="240"
+            <circle  class="circle" id="circle" cx="250" cy="250" [(attr.r)]="circleRadius"
                     fill="none" [(attr.stroke)]=" '#' + circleColor" [(attr.stroke-width)]="circleStrokeWidth"/>
                     <text class="counter" [attr.transform]="textMatr[i]" class="st1">{{clock}}</text>
           </svg>
@@ -28,8 +28,13 @@
     </li>
     <li class="control">
       <div class="control-label"><label for="width">Stroke width</label></div>
-      <mat-slider  class="picker" min="0" max="21" step="1" [(value)]="circleStrokeWidth" (onTouched)="touchSlider($event)"></mat-slider>
+      <mat-slider  class="picker" min="0" max="50" step="1" [(value)]="circleStrokeWidth" (onTouched)="touchSlider($event)"></mat-slider>
       <div class="current-value">{{circleStrokeWidth}}</div> 
+    </li>
+    <li class="control">
+      <div class="control-label"><label for="width">Circle radius</label></div>
+      <mat-slider  class="picker" min="180" max="240" step="1" [(value)]="circleRadius"></mat-slider>
+      <div class="current-value">{{circleRadius}}</div> 
     </li>
     <li class="control">
       <div class="control-label"><label  for="date">Goal date</label></div> 
