@@ -11,7 +11,7 @@
                 
               </style>
             <circle  class="circle" id="circle" cx="250" cy="250" [(attr.r)]="circleRadius"
-                    fill="none" [(attr.stroke)]=" '#' + circleColor" [(attr.stroke-width)]="circleStrokeWidth"/>
+                    fill="none" [(attr.stroke)]="circleColor" [(attr.stroke-width)]="circleStrokeWidth"/>
                     <text class="counter" [attr.transform]="textMatr[i]" class="st1">{{clock}}</text>
           </svg>
     </div>
@@ -22,10 +22,14 @@
 <div class="control-panel">
   <ul class="control-list">
     <li class="control">
+        <div class="control-label"><label for="width">Color</label></div>
+        <app-pallet (onPickColor) = "changeColor($event)" ></app-pallet>
+    </li>
+    <!-- <li class="control">
         <div class="control-label"><label for="color">Color (#RGB)</label></div> 
         <mat-slider class="picker" min="1" max="1665" step="1" [(value)]="circleColor"></mat-slider>
         <div class="current-value">#{{circleColor}}</div> 
-    </li>
+    </li> -->
     <li class="control">
       <div class="control-label"><label for="width">Stroke width</label></div>
       <mat-slider  class="picker" min="0" max="50" step="1" [(value)]="circleStrokeWidth" (onTouched)="touchSlider($event)"></mat-slider>
@@ -63,4 +67,5 @@
     </div>
 </div>
     </div>
+
 </body>

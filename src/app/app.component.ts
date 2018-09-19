@@ -18,7 +18,7 @@ export class AppComponent implements OnInit{
   circleRadius = 225;
   clocks= [1,22,56,0]
   sliderVal = 300
-  circleColor = "999"
+  circleColor = "#999"
   circleWidth = "300"
   stroked;
   strokedRed:string;
@@ -27,8 +27,8 @@ export class AppComponent implements OnInit{
   oneNumberMatr = "matrix(1, 0, 0, 1, 180, 340)";
   textMatr = ["matrix(1 0 0 1 180 340)", "matrix(1 0 0 1 120 340)", "matrix(1 0 0 1 120 340)", "matrix(1 0 0 1 180 340)"]
   changeColor(e) {
-    
-    this.circleColor = "#" + e.toString(16);
+    console.log(e)
+    this.circleColor = e;
   }
   changeSW(e) {
     if (+e < 50) {

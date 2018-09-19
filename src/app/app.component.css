@@ -139,3 +139,7 @@ border: 1px solid rgb(137, 165, 255)
     }
 
 }
+.app-pallet-insert {
+    display: flex;
+    justify-content: center;
+}
