@@ -80,7 +80,6 @@ var AppComponent = /** @class */ (function () {
         this.textMatr = ["matrix(1 0 0 1 180 340)", "matrix(1 0 0 1 120 340)", "matrix(1 0 0 1 120 340)", "matrix(1 0 0 1 180 340)"];
     }
     AppComponent.prototype.changeColor = function (e) {
-        console.log(e);
         this.circleColor = e;
     };
     AppComponent.prototype.changeSW = function (e) {
@@ -283,7 +282,7 @@ module.exports = ".app-pallet-insert {\r\n    display: flex;\r\n    justify-cont
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"custom-pallet\" [ngClass]=\"palletClosed ? 'panel-chooser_min' : ''\">\n  <div class=\"panel-chooser\">\n      <input class=\"custom-color-input\" type=\"text\" #inputCustomColor (keyup)=pickColor(inputCustomColor.value)>\n      <div class=\"color-cell-chooser\" [style.backgroundColor]=\"pickedColor\" (click)=\"togglePallet()\"></div>\n  </div>\n  \n  <ul class=\"color-list\" [ngClass]=\"panelClosed ? 'color-list_closed' : ''\">\n    <li *ngFor=\"let row of colorRows\" class=\"color-list__row\">\n      <span *ngFor=\"let color of row\" class=\"color-cell\" [style.backgroundColor]=\"color\" (click)=\"pickColor(color)\" (dblclick) = \"chooseColor()\"></span>\n    </li>\n    <li class=\"big-cell-row\"><span class=\"color-cell-big\" [style.backgroundColor]=\"pickedColor\" (dblclick) = \"chooseColor()\"></span></li>\n  </ul>\n  \n  \n</div>"
+module.exports = "<div class=\"custom-pallet\" [ngClass]=\"palletClosed ? 'panel-chooser_min' : ''\">\n  <div class=\"panel-chooser\">\n      <input class=\"custom-color-input\" type=\"text\" #inputCustomColor (keyup)=pickColor(inputCustomColor.value)>\n      <div class=\"color-cell-chooser\" [style.backgroundColor]=\"pickedColor\" (click)=\"togglePallet()\"></div>\n  </div>\n  \n  <ul class=\"color-list\" [ngClass]=\"panelClosed ? 'color-list_closed' : ''\">\n    <li *ngFor=\"let row of colorRows\" class=\"color-list__row\">\n      <span *ngFor=\"let color of row\" class=\"color-cell\" [style.backgroundColor]=\"color\" (click)=\"pickColor(color)\" (dblclick) = \"chooseColor()\"></span>\n    </li>\n    <li class=\"big-cell-row\"><span class=\"color-cell-big\" [style.backgroundColor]=\"pickedColor\" (click)  = \"chooseColor()\" ></span></li>\n  </ul>\n  \n  \n</div>"
 
 /***/ }),
 

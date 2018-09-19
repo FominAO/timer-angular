@@ -8,7 +8,7 @@
     <li *ngFor="let row of colorRows" class="color-list__row">
       <span *ngFor="let color of row" class="color-cell" [style.backgroundColor]="color" (click)="pickColor(color)" (dblclick) = "chooseColor()"></span>
     </li>
-    <li class="big-cell-row"><span class="color-cell-big" [style.backgroundColor]="pickedColor" (dblclick) = "chooseColor()"></span></li>
+    <li class="big-cell-row"><span class="color-cell-big" [style.backgroundColor]="pickedColor" (click)  = "chooseColor()" ></span></li>
   </ul>
   
   

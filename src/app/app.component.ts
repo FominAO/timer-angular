@@ -27,7 +27,6 @@ export class AppComponent implements OnInit{
   oneNumberMatr = "matrix(1, 0, 0, 1, 180, 340)";
   textMatr = ["matrix(1 0 0 1 180 340)", "matrix(1 0 0 1 120 340)", "matrix(1 0 0 1 120 340)", "matrix(1 0 0 1 180 340)"]
   changeColor(e) {
-    console.log(e)
     this.circleColor = e;
   }
   changeSW(e) {
