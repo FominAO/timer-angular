@@ -1,4 +1,6 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input, OnDestroy } from '@angular/core';
+import { ClosePalletService } from '../closePallet.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-pallet',
@@ -6,8 +8,9 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
   host: {class: 'app-pallet-insert'},
   styleUrls: ['./pallet.component.css']
 })
-export class PalletComponent implements OnInit {
+export class PalletComponent implements OnInit, OnDestroy {
   @Output() onPickColor = new EventEmitter<string>()
+
   panelClosed = true;
   palletClosed = true;
   chosenColor;
@@ -18,9 +21,24 @@ export class PalletComponent implements OnInit {
     ['rgb(203, 50, 52)', 'rgb(182, 36, 40)', 'rgb(182, 36, 40)', 'rgb(98, 31, 31)', 'rgb(113, 53, 46)', 'rgb(152, 118, 83)'],
     ['rgb(107, 89, 88)', 'rgb(94, 72, 69)', 'rgb(86, 60, 61)', 'rgb(97, 15, 24)', '#fff', '#000']
   ];
-  constructor() { }
+  closePanelSubscription: Subscription
+  constructor(public closePallet: ClosePalletService) { }
 
   ngOnInit() {
+    this.closePanelSubscription = this.closePallet.opened.subscribe(response => {
+      if (response && this.palletClosed) {
+        this.togglePallet()
+      }else if (!response && !this.palletClosed){
+        this.togglePallet()
+      }
+        
+    })
+  }
+  onPalletClick() {
+    this.closePallet.palletClicked = true;
+  }
+  clickStoped() {
+    
   }
   pickColor(color) {
     this.pickedColor = color;
@@ -42,5 +60,8 @@ export class PalletComponent implements OnInit {
   }
   toggle2() {
     this.panelClosed = !this.panelClosed;
+  }
+  ngOnDestroy() {
+    this.closePanelSubscription.unsubscribe()
   }
 }

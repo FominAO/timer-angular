@@ -1,14 +1,14 @@
-<div class="custom-pallet" [ngClass]="palletClosed ? 'panel-chooser_min' : ''">
+<div class="custom-pallet" [ngClass]="palletClosed ? 'panel-chooser_min' : ''" (click)="clickStoped()" (mousedown)="onPalletClick()">
   <div class="panel-chooser">
-      <input class="custom-color-input" type="text" #inputCustomColor (keyup)=pickColor(inputCustomColor.value)>
-      <div class="color-cell-chooser" [style.backgroundColor]="pickedColor" (click)="togglePallet()"></div>
+      <input class="custom-color-input" [value]="pickedColor" type="text" #inputCustomColor (keyup)=pickColor(inputCustomColor.value)>
+      <div class="color-cell-chooser" [style.backgroundColor]="pickedColor" (click)=" pickColor(inputCustomColor.value); chooseColor()"></div>
   </div>
   
   <ul class="color-list" [ngClass]="panelClosed ? 'color-list_closed' : ''">
     <li *ngFor="let row of colorRows" class="color-list__row">
       <span *ngFor="let color of row" class="color-cell" [style.backgroundColor]="color" (click)="pickColor(color)" (dblclick) = "chooseColor()"></span>
     </li>
-    <li class="big-cell-row"><span class="color-cell-big" [style.backgroundColor]="pickedColor" (click)  = "chooseColor()" ></span></li>
+    <li class="big-cell-row"><span class="color-cell-big" [style.backgroundColor]="pickedColor" (click)  = "pickColor(inputCustomColor.value); chooseColor()" ></span></li>
   </ul>
   
   

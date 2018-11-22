@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { Ticking } from './ticking/ticking.directive';
 import { TickDirectiveDirective } from './tick-directive.directive';
 import { PalletComponent } from './pallet/pallet.component';
+import { ClosePalletService } from './closePallet.service';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,7 @@ import { PalletComponent } from './pallet/pallet.component';
     MatNativeDateModule,
     BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [ClosePalletService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

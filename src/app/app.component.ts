@@ -1,11 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Ticking } from './ticking/ticking.directive';
+import { ClosePalletService } from './closePallet.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit{
+  @ViewChild('appPallet') appPallet: ElementRef;
   timerLabel = 'Label'
   getCode = false;
   customCode:string = "";
@@ -26,6 +28,9 @@ export class AppComponent implements OnInit{
   twoNumberMatr = "matrix(1, 0, 0, 1, 120, 340)"
   oneNumberMatr = "matrix(1, 0, 0, 1, 180, 340)";
   textMatr = ["matrix(1 0 0 1 180 340)", "matrix(1 0 0 1 120 340)", "matrix(1 0 0 1 120 340)", "matrix(1 0 0 1 180 340)"]
+  constructor(public closePallet: ClosePalletService) {
+
+  }
   changeColor(e) {
     this.circleColor = e;
   }
@@ -129,6 +134,9 @@ export class AppComponent implements OnInit{
   }
   setLabel(e) {
     this.timerLabel = e;
+  }
+  info(e) {
+    this.closePallet.clickOnParent()
   }
   set3() {
     console.log(document.getElementsByClassName('counter'))

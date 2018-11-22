@@ -1,5 +1,5 @@
 <body>
-		<div class="container">
+		<div class="container" (mousedown)="info($event)">
 <div class="timer">
   <div class="timer__label">{{labelInput.value}}</div>
   <div class="timer__clocks" *ngFor="let clock of clocks; let i = index">
@@ -23,7 +23,7 @@
   <ul class="control-list">
     <li class="control">
         <div class="control-label"><label for="width">Color</label></div>
-        <app-pallet (onPickColor) = "changeColor($event)" ></app-pallet>
+        <app-pallet #appPallet (onPickColor) = "changeColor($event)" ></app-pallet>
     </li>
     <!-- <li class="control">
         <div class="control-label"><label for="color">Color (#RGB)</label></div> 
